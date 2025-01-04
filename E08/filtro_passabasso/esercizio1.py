@@ -3,8 +3,8 @@ import pandas as pd
 from scipy import optimize
 import matplotlib.pyplot as plt
 from scipy import integrate
-def dvout(Vout, t,RC,vin):
 
+def dvout(Vout, t,RC,vin):
     return (1/RC)*(vin(t)-Vout)
 def vin_square(t):
     if np.isscalar(t):
@@ -22,7 +22,7 @@ def vin_square(t):
 tt = np.linspace(0,10,1000)
 x0 =  0.
 RC=[0.25,1,4]
-# Diszionari per soluzioni
+# Dizionari per soluzioni
 xsolsp = {}
 
 
@@ -40,7 +40,7 @@ data['V_out']=xx
 pd.DataFrame.to_csv(data,'dati1.csv')
 for rc in RC:
     plt.plot(tt,xsolsp[rc],label=' RC= {:}'.format(rc))
-plt.plot(tt,vin_square(tt))
+plt.plot(tt,vin_square(tt),label='$V_{in}$')
 plt.xlabel('t')
 plt.ylabel('Vout')
 plt.legend(fontsize=10)
