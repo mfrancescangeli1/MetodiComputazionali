@@ -1,0 +1,4 @@
+import somme as sm
+n=import('scrivi numero naturale')
+n=int(n)
+sm.sum(n)
