@@ -1,0 +1,35 @@
+import sys,os
+import argparse
+
+
+def parse_arguments():
+    
+    parser = argparse.ArgumentParser(description='Esercizio 1: s vs t, v vs t',
+                                     usage      ='python3 argparse_es1.py  --opzione')
+    parser.add_argument('-v', '--vel',    action='store',                     help='Esempio di opzione booleana')
+    parser.add_argument('-s', '--space',    action='store',                   help='Esempio di opzione con valore')
+    return  parser.parse_args()
+
+
+def main():
+
+    args = parse_arguments()
+
+    # print 
+    #print(args)
+
+    if args.opzione1 == True:
+        print('---------------------------------------------')
+        print('   Opzione 1 = True')
+        print('---------------------------------------------')
+
+    if args.opzione2 != None:
+        print('---------------------------------------------')
+        print('   Valore Opzione2:', args.opzione2)
+        print('---------------------------------------------')
+
+
+
+if __name__ == "__main__":
+
+    main()

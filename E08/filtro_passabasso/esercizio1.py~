@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+from scipy import optimize
+import matplotlib.pyplot as plt
+from scipy import integrate
+def dvout(Vout, t):
+    RC=1
+    return (1/RC)*(vin_square(t)-Vout)
+def vin_square(t):
+    if np.isscalar(t):
+        if int(t)%2==0:
+            return 1
+        else:
+            return -1
+    else:
+        vin = np.ones(len(t))
+        odd_mask = tt.astype(int) %2 != 0
+        vin[odd_mask] = -1
+        return vin
+    #intervallo [a,b]. x di partenza = 0.
+
+tt = np.linspace(0,10,1000)
+x0 =  0.
+
+xx = integrate.odeint(dvout, y0=x0, t=tt)
+plt.plot(tt,xx)
+plt.plot(tt,vin_square(tt))
+plt.xlabel('t')
+plt.ylabel('Vout')
+plt.ylim(-1,1)
+plt.show()
