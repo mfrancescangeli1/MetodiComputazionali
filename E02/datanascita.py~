@@ -1,0 +1,3 @@
+from datetime import datetime, timedelta
+data=("data di nascita ")
+mydate=datetime.strprime,"%d-%m-%y"
