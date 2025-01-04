@@ -1,5 +1,0 @@
-matteo
-francescangeli
-357174
-matteo.francescangeli1@studenti.unipg.it
-Python 3.12.3
