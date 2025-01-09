@@ -1,0 +1,21 @@
+import numpy as np
+import scipy 
+import matplotlib.pyplot as plt
+
+import runw as rw
+plt.subplots(figsize=(7,5))
+xx5 = []
+yy5 = []
+sf=0.01
+s=2
+for i in range(5):
+    x0,y0 =rw.randomasimm( s,sf)
+    xx5.append(x0)
+    yy5.append(y0)
+    plt.scatter(x0,y0, s=3)
+plt.xlabel(r'$\Delta x$')
+plt.ylabel(r'$\Delta y$')
+plt.xlim(-200, 200)
+plt.ylim(-200, 200)
+plt.show()
+

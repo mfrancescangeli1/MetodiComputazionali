@@ -1,0 +1,11 @@
+
+def randomwalk(N, s):
+    phi= np.random.uniform(low=0, high=2*np.pi, size=N)
+    dx = np.array([0])
+    dy = np.array([0])
+    for i in phi:
+        tx = dx[-1] + s*np.cos(i)
+        ty = dy[-1] + s*np.sin(i)
+        dx = np.append(dx, tx)
+        dy = np.append(dy, ty) 
+    return dx, dy

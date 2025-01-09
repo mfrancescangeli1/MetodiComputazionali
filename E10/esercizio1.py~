@@ -1,0 +1,30 @@
+
+import numpy as np
+import scipy 
+import matplotlib.pyplot as plt
+from matplotlib import  transforms
+def randomwalk(N, s):
+    phi= np.random.uniform(low=0, high=2*np.pi, size=N)
+    dx = np.array([0])
+    dy = np.array([0])
+    for i in phi:
+        tx = dx[-1] + s*np.cos(i)
+        ty = dy[-1] + s*np.sin(i)
+        deltax = np.append(deltax, tmpx)
+        deltay = np.append(deltay, tmpy)
+        
+    return deltax, deltay
+plt.subplots(figsize=(9,8))
+step=0.5
+n=1000
+for i in range(5):
+    x0,y0 = randomwalk(step, n)
+    xx5.append(x0)
+    yy5.append(y0)
+    plt.scatter(x0,y0, s=3)
+
+plt.xlabel(r'$\Delta x$')
+plt.ylabel(r'$\Delta y$')
+plt.xlim(-200, 200)
+plt.ylim(-200, 200)
+plt.show()
