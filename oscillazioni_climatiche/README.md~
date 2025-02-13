@@ -1,0 +1,44 @@
+#Progetto: Oscillazioni climatiche
+Matteo Francescangeli (matteo.francescangeli1@studenti.unipg.it)
+università degli studi di Perugia: corso di Metodi Computazionali per la Fisica
+# Oscillazioni Climatiche negli Ultimi 800.000 Anni
+
+Questo progetto analizza le variazioni climatiche degli ultimi 800.000 anni,
+focalizzandosi sulle temperature, sulla concentrazione di CO₂ atmosferica e
+sulla loro correlazione. I dati utilizzati provengono da carotaggi di ghiaccio,
+che offrono registrazioni dettagliate delle condizioni climatiche passate.
+
+## Descrizione del Progetto
+
+I carotaggi di ghiaccio forniscono informazioni preziose sulle condizioni
+climatiche storiche, in particolare su temperatura e concentrazione di CO₂.
+
+In questo progetto, si vuole analizzare i dati ottenuti da tali carotaggi per:
+
+- Determinare le principali frequenze e periodi di oscillazione delle
+temperature e delle concentrazioni di CO₂.
+- Valutare la correlazione tra queste due variabili nel tempo.
+
+## Metodologia
+
+A causa della natura irregolare dei dati temporali derivanti dai carotaggi di
+ghiaccio, l'uso della Trasformata di Fourier (FFT) non era appropriato.
+Pertanto si è optato  per il Periodogramma di Lomb-Scargle utilizzato per
+l'analisi spettrale di dati campionati in modo non uniforme. (sia dalla
+libreria di scipy sia di astropy)
+Per individuare i picchi maggiori nello spettro di potenze si è utilizzato un
+fit rispetto alla funzione del rumore così da dividere i picchi dovuti a rumore
+e i picchi veri e propri che indicano una periodicità.
+## Risultati
+
+L'analisi ha permesso di identificare:
+- Frequenze Dominanti: Specifiche frequenze che caratterizzano le oscillazioni
+climatiche nel periodo studiato.
+- Periodi di Ripetizione: I principali periodi di ripetizione sia per le variazioni di temperatura che per le concentrazioni di CO₂.
+- Correlazione: Una forte correlazione tra le variazioni di temperatura e i
+livelli di CO₂, suggerendo un legame stretto tra queste due variabili.
+
+
+## Installazione
+
+Per replicare l'analisi:
