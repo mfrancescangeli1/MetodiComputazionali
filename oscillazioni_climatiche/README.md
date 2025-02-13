@@ -1,5 +1,7 @@
-#Progetto: Oscillazioni climatiche
+# Progetto: Oscillazioni climatiche
+
 Matteo Francescangeli (matteo.francescangeli1@studenti.unipg.it)
+
 università degli studi di Perugia: corso di Metodi Computazionali per la Fisica
 # Oscillazioni Climatiche negli Ultimi 800.000 Anni
 
@@ -50,18 +52,18 @@ scaricarli):
 il progetto è all'interno del file 'progetto.py' il quale è diviso in 6
 argomenti (argparse).
 le opzioni sono le seguenti:
-  -h, --help  show this help message and exit
-  --pt1       'grafici di temperatura e concentrazione di CO2 rispetto al tempo'
+-  -h, --help  show this help message and exit
+-  --pt1      'grafici di temperatura e concentrazione di CO2 rispetto al tempo'
   	      mette in relazione i dati  con il tempo
-  --pt2       'analisi di distanze temporali di campionamento'
+-  --pt2       'analisi di distanze temporali di campionamento'
   	      si osserva l'irregolarità dei campionamenti
-  --pt3       'Lombscargle e spettri di potenza'
+-  --pt3       'Lombscargle e spettri di potenza'
   	      studio degli spettri in frequenza
-  --pt4       'fit degli spettri di potenza'
+-  --pt4       'fit degli spettri di potenza'
   	      fit rispetto alla funzione generica del rumore
-  --pt5       'confronto nel dominio temporale e di frequenze'
+-  --pt5       'confronto nel dominio temporale e di frequenze'
   	      confronto qualitativo degli andamenti normalizzati
-  --pt6       'individuazione frequenze principali'
+-  --pt6       'individuazione frequenze principali'
   	      stampa le frequenze considerate principali e ricostruisce gli
 	      andamenti con solo le frequenze principali
 
