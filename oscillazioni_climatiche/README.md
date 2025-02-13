@@ -42,6 +42,11 @@ livelli di CO₂, suggerendo un legame stretto tra queste due variabili.
 ## Come usare il progetto
 
 Per replicare l'analisi:
+i file contenenti i dati si trovano ai seguenti link (non è necessario
+scaricarli):
+  -https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/epica_domec/edc3deuttemp2007-noaa.txt
+  -https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/epica_domec/edc3-composite-co2-2008-noaa.txt
+
 il progetto è all'interno del file 'progetto.py' il quale è diviso in 6
 argomenti (argparse).
 le opzioni sono le seguenti:
