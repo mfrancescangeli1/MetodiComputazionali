@@ -195,8 +195,7 @@ def main():
         if args.pt3 == True:
 
            fig, axs = plt.subplots(2, 1,layout="constrained")
-           axs[0].plot(freqt,powert,color='maroon', label='temperatura',
-                       alpha=0.7)
+           axs[0].plot(freqt,powert,color='maroon',alpha=0.7)
            axs[0].scatter(freqt,powert,marker='.',color='darkred',
                           label='temperatura',alpha=0.3)
            axs[0].set_title("spettro di potenza")
@@ -206,8 +205,7 @@ def main():
            axs[0].set_yscale('log')
            axs[0].legend()
            axs[0].grid(True)
-           axs[1].plot(freqc,powerc,color='indigo',
-                       label=r'concentrazione C$O_2$',alpha=0.7)
+           axs[1].plot(freqc,powerc,color='indigo',alpha=0.7)
            axs[1].scatter(freqc,powerc,marker='.',color='indigo',
                           label=r'concentrazione C$O_2$',alpha=0.3)
            axs[1].set_xlabel('frequenza(1/yr)')
@@ -240,9 +238,8 @@ def main():
            #           Grafico spettro di potenza periodicità (log)        #
            #---------------------------------------------------------------#
            fig, axs = plt.subplots(2, 1,layout="constrained")
-           axs[0].plot(1/freqt[1:],powert[1:],color='maroon',
-                       label='temperatura',alpha=0.7)
-           axs[0].scatter(1/freqt[1:],powert[1:],
+           axs[0].plot(1/freqt[1:],powert[1:],color='maroon',alpha=0.7)
+           axs[0].scatter(1/freqt[1:],powert[1:],label='temperatura',
                           marker='.',color='maroon',alpha=0.3)
            axs[0].set_title("spettro di potenza su periodo")
            axs[0].set_ylabel(r'$\left| c_k \right|^2$')
@@ -283,7 +280,7 @@ def main():
             
             #escludendo le frequenze con maggiore potenza
             #(osservazione empirica)
-            masktf =  (freqt1 < 6.24e-6) | (freqt1 > 4.50e-5)
+            masktf =  (freqt1 < 4.24e-6) | (freqt1 > 4.50e-5)
             maskcf = (freqc1 < 4.12e-6) | (freqc1 > 4.38e-5)
             mt=np.logical_not(masktf)
             mc=np.logical_not(maskcf)
@@ -319,7 +316,7 @@ def main():
             axs[0].plot(freqt1,powert1,color='maroon',alpha=0.7)
             axs[0].scatter(freqt1[mt],powert1[mt],color='red',alpha=0.7)
             axs[0].plot(freqt1,func(freqt1,pt2[0],pt2[1]),color='darkgreen',
-                        label='fit 2')
+                        label='fit 1')
             axs[0].set_xlabel('Freq. [Hz]')
             axs[0].set_ylabel(r'$\left| c_k \right|^2$')
             axs[0].set_xscale('log')
@@ -328,7 +325,7 @@ def main():
             axs[1].plot(freqc1,powerc1,color='blueviolet',alpha=0.7)
             axs[1].scatter(freqc1[mc],powerc1[mc],color='red',alpha=0.7)
             axs[1].plot(freqc2,func(freqc2,pc2[0],pc2[1]),color='goldenrod',
-                        label='fit 2')
+                        label='fit 1')
             axs[1].set_xlabel('Freq. [Hz]')
             axs[1].set_ylabel(r'$\left| c_k \right|^2$')
             axs[1].set_xscale('log')
@@ -344,9 +341,9 @@ def main():
             c_norm=(CO2_rel-np.min(CO2_rel))/(np.max(CO2_rel)-np.min(CO2_rel))
             plt.figure(figsize=(10, 6))
             plt.plot(yt, t_norm,label='Temperatura Normalizzata',
-                         color='firebrick',alpha=0.6)
+                         color='firebrick',alpha=0.8)
             plt.plot(yc, c_norm, label='CO2 Normalizzata',
-                         color='blueviolet',alpha=0.6)
+                         color='blueviolet',alpha=0.8)
             plt.xlabel('tempo (year)')
             plt.ylabel('Valore Normalizzato (0-1)')
             plt.title('Andamento normalizzato Temperatura e CO2 (Min-Max)')
@@ -358,9 +355,9 @@ def main():
             lsc_norm=LombScargle(yc,c_norm)
             freqtn, powertn = lst_norm.autopower()
             freqcn, powercn = lsc_norm.autopower()
-            plt.plot(freqtn,powertn,color='maroon',alpha=0.3)
+            plt.plot(freqtn,powertn,color='maroon',alpha=0.2)
             plt.scatter(freqtn,powertn,marker='+',color='maroon',alpha=0.4)
-            plt.plot(freqcn,powercn,color='indigo',alpha=0.3)
+            plt.plot(freqcn,powercn,color='indigo',alpha=0.2)
             plt.scatter(freqcn,powercn,marker='.',color='indigo',alpha=0.4)
             plt.title("confronto spettro di potenza (normalizzato)")
             plt.xscale('log')
@@ -373,9 +370,10 @@ def main():
         #l'analisi è stata fatta con LombScargle di Astropy per sfruttarne le
         #informazioni aggiuntive
         
-        lst = LombScargle(yt, temp['Temperature'])
+        lst = LombScargle(yt,temp['Temperature'],fit_mean=True,
+                          center_data=False)
         freqt, powert = lst.autopower()
-        lsc= LombScargle(yc,CO2_rel)
+        lsc= LombScargle(yc,CO2_rel,fit_mean=True, center_data=False)
         freqc, powerc = lsc.autopower()
         #escludendo le frequenze più alte (più soggette a rumore)
         maskt = (freqt<0.003)
@@ -398,7 +396,6 @@ def main():
         mt=np.logical_not(masktf)
         mc=np.logical_not(maskcf)
         ##grafico dei frequenze principali
-        # fit
         peakst, _ = find_peaks(powert1, height=1e-2, prominence=0.05)
         peaksc, _ = find_peaks(powerc1, height=1e-2, prominence=0.07)
         fig, axs = plt.subplots(2, 1, layout='constrained')
@@ -429,26 +426,27 @@ def main():
         peak_freqc = freqc[peaksc]  
         #ricostruzione segnale
         tempf = np.zeros_like(yt, dtype=float)
+        #tempf =  np.full_like(yt, lst.offset())
         for f in peak_freqt:
             tempf += lst.model(yt, f)
-        plt.plot(yt, temp['Temperature'], label="Segnale originale")
-        plt.plot(yt, tempf, label="Segnale ricostruito", linestyle="--")
-        plt.xlabel("Tempo")
-        plt.ylabel("Ampiezza")
+        plt.plot(yt, temp['Temperature'], label="dati originali")
+        plt.plot(yt, tempf, label="ricostruzione", linestyle="--")
+        plt.xlabel("Tempo (yr)")
+        plt.ylabel("Temperatura(°C)")
         plt.legend()
-        plt.title("Ricostruzione del segnale  dalle frequenze principali")
+        plt.title("Ricostruzione andamento temperatura")
         plt.show()
         #ricostruzione segnale
-        CO2f = np.zeros_like(yc,  dtype=float)
+        CO2f = np.zeros_like(yc,dtype=float)
         for f in peak_freqc:
             CO2f += lsc.model(yc, f)
             
-        plt.plot(yc, CO2_rel, label="Segnale originale")
-        plt.plot(yc, CO2f, label="Segnale ricostruito", linestyle="--")
-        plt.xlabel("Tempo")
-        plt.ylabel("Ampiezza")
+        plt.plot(yc, CO2_rel, label="dati originali")
+        plt.plot(yc, CO2f, label="ricostruzione", linestyle="--")
+        plt.xlabel("Tempo (yr)")
+        plt.ylabel("concentrazione (p. p. m.)")
         plt.legend()
-        plt.title("Ricostruzione del segnale dalle frequenze principali")
+        plt.title(r"Ricostruzione andamento C$O_2$")
         plt.show()
         # Stampa delle frequenze principali
         print("Frequenze principali  della temperatura:")
